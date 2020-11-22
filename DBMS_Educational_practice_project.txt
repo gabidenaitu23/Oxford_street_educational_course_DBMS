@@ -1,0 +1,354 @@
+
+CREATE TABLE public.branch
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    location character varying COLLATE pg_catalog."default",
+    centre_id integer,
+    course_id integer,
+    CONSTRAINT branch_pkey PRIMARY KEY (id),
+    CONSTRAINT branch_centre_id_fkey FOREIGN KEY (centre_id)
+        REFERENCES public.educational_centre (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT branch_course_id_fkey FOREIGN KEY (course_id)
+        REFERENCES public.course (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.branch
+    OWNER to postgres;
+
+insert into branch (name, id, location , centre_id,course_id) values ("Study_English",71,"Nur-Sultan",10001,909);
+insert into branch (name, id, location , centre_id,course_id) values 
+("Fast_Result"	,72,"Almaty",10001,907);
+insert into branch (name, id, location , centre_id,course_id) values ("Exam_preparation",73,"Karaganda",10001,910);
+insert into branch (name, id, location , centre_id,course_id) values ("Ielts_preparation",74,"Pavlodar",10001,901);
+insert into branch (name, id, location , centre_id,course_id) values ("Oxford_education",75,"Kostanai",10001,908);
+insert into branch (name, id, location , centre_id,course_id) values ("Excellent_result",76,"Aktobe",10001,906);
+insert into branch (name, id, location , centre_id,course_id) values ("Student_place",77,"Atyrau",10001,905);
+insert into branch (name, id, location , centre_id,course_id) values ("English_school",78,"Kyzylorda",10001,903);
+insert into branch (name, id, location , centre_id,course_id) values ("Take_good_mark",79,"Kokshetau",10001,902);
+insert into branch (name, id, location , centre_id,course_id) values ("Bilim",80,"Karaganda",10001,904);
+
+
+
+
+
+CREATE TABLE public.club
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    CONSTRAINT club_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.club
+    OWNER to postgres;
+
+insert into club (name, id) values ("Football club",101);
+insert into club (name, id) values ("Basketball club",102);
+insert into club (name, id) values ("Volleyball club",103);
+insert into club (name, id) values ("?hess club",104);
+insert into club (name, id) values ("TED",105);
+insert into club (name, id) values ("Writing club",106);
+insert into club (name, id) values ("Speaking club",107);
+insert into club (name, id) values ("Singing club",108);
+insert into club (name, id) values ("Car club",109);
+insert into club (name, id) values ("Media club",110);
+insert into club (name, id) values ("Cooking club",111);
+insert into club (name, id) values ("Painting club",112);
+insert into club (name, id) values ("Debate club",113);
+insert into club (name, id) values ("Dance club",114);
+insert into club (name, id) values ("Art club",115);
+insert into club (name, id) values ("Origami club",116);
+insert into club (name, id) values ("Photography club",117);
+insert into club (name, id) values ("Drama club",118);
+insert into club (name, id) values ("Math club",119);
+insert into club (name, id) values ("Literature club"	,120);
+
+
+
+CREATE TABLE public.course
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    total_duration_of_the_course character varying COLLATE pg_catalog."default",
+    cost integer,
+    group_of_students_id integer,
+    CONSTRAINT course_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.course
+    OWNER to postgres;
+
+
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("IELTS 4.5+",901,"45 days",39990,1);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("IELTS 5.5+",902,"55 days",49990,9);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("TOEFL 80+",903,"60 days",45990,2);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("TO?FL 100+"	,904,"65 days",57899,5);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("APTIS prepare.group",905,"40 days",34990,3);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("Pearson_Test_of_English",906,"36 days",57764,4);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("The_European_Language_Certificates",907,"40 days",57420,10);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("Key_English_Test",908,"34 days",63790,6);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("Business_English_Certificates",909	,"38 days",40700,7);
+insert into course (name, id,total_duration_of_the_course,cost,group_of_students_id) values ("The_European_Language_Certificates",910,"57 days",46687,8);
+
+
+
+
+
+
+CREATE TABLE public.educational_centre
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    location character varying COLLATE pg_catalog."default",
+    opening_date integer,
+    phone_number bigint,
+    CONSTRAINT educational_centre_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.educational_centre
+    OWNER to postgres;
+
+insert into course (name, id,location,opening_date,phone_number) values ("Oxford street",10001,"Nur-Sultan",1998,87777771221);
+
+CREATE TABLE public.exam
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    date date,
+    CONSTRAINT exam_pkey PRIMARY KEY (id)
+)
+
+
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.exam
+    OWNER to postgres;
+
+insert into exam (name, id, date) values ("IELTS",50,"2020-01-31");
+insert into exam (name, id, date) values ("TOEFL",51,"2020-01-23");
+insert into exam (name, id, date) values ("APTIS",52,"2020-01-15");
+insert into exam (name, id, date) values ("Pearson_Test_of_English",53,"2020-04-21");
+insert into exam (name, id, date) values ("The_European_Language_Certificates",54,"2020-07-08");
+insert into exam (name, id, date) values ("Key_English_Test",55,"2020-09-09");
+insert into exam (name, id, date) values ("Business_English_Certificates"	,56,"2020-06-27");
+insert into exam (name, id, date) values ("The_European_Language_Certificates",57,"2020-08-19");
+
+
+
+
+CREATE TABLE public.group_of_students
+(
+    name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    exam_id integer,
+    CONSTRAINT group_of_students_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.group_of_students
+    OWNER to postgres;
+
+
+insert into group_of_students (name, id, exam_id) values ("A",1,	50);
+insert into group_of_students (name, id, exam_id) values ("B",2,51);
+
+insert into group_of_students (name, id, exam_id) values ("C",3,52);
+
+insert into group_of_students (name, id, exam_id) values ("D",4,53);
+insert into group_of_students (name, id, exam_id) values ("E",5,51);
+insert into group_of_students (name, id, exam_id) values ("F",6,55);
+insert into group_of_students (name, id, exam_id) values ("G",7,56);
+insert into group_of_students (name, id, exam_id) values ("H",8,57);
+insert into group_of_students (name, id, exam_id) values ("I",9,50);
+insert into group_of_students (name, id, exam_id) values ("J",10,54);
+
+
+
+
+CREATE TABLE public.student
+(
+    full_name character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    club_id integer,
+    group_of_students_id integer,
+    CONSTRAINT student_pkey PRIMARY KEY (id),
+    CONSTRAINT student_club_id_fkey FOREIGN KEY (club_id)
+        REFERENCES public.club (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.student
+    OWNER to postgres;
+
+
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Cloris Spurman",1,110,1);
+insert into student (full_name, id, club_id,group_of_students_id) values ("Rikki Wallworth",2,120,3);
+insert into student (full_name, id, club_id,group_of_students_id) values ("Charlena Ingleson",3,113,6);
+insert into student (full_name, id, club_id,group_of_students_id) values ("Ignacius Krystof",4,114,7);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Arielle Rountree",5,105,9);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Chic Chastelain",6,106,10);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("John Tompkiss",7,117,2);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Jehanna Trouncer",8,108,4);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Ula Hellicar",9,109,5);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Eduino Britcher",10,110,8);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Maxim Waldrum",11,110,1);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Jervis Leasor",12,120,2);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Maurise Gonnard",13,113,3);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Kial Pellew",14,104,4);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Eb Balmann",15,105,5);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Lauri Hatherley",16,106,6);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Arri Popplestone",17,117,7);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Erwin Moores",18,118,8);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Ransell Arnoll",19,119,9);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Liz Wais",20,120,10);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Alair Veare",21,111,2);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Alfy Scrauniage",22,102,4);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Veriee Masseo",23,103,6);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Alexio Molyneux",24,104,8);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Diena Etridge",25,115,10);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Fraser Damato",26,116,1);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Chicky Surgison",27,107,3);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Kalle Dyott",28,108,5);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Melessa Rennebeck",29,119,7);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Franciskus Romke",30,120,9);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Dorisa Guiett",31,111,10);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Dacia Upton",32,120,9);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Walden Baudone",33,112,8);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Tammie Minton",34,115,7);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Beckie Pennick",35,116,6);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Evelyn Perell",36,120,1);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Dagny MacKill",37,104,2);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Pavia Foley",38,105,3);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Pia Sholl",39,117,4);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Julie Whitlock",40,118,5);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Edeline Pablo",41,119,1);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Jeremie Mewton",42,113,2);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Arlette Chatband",43,112,3);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Astrix Gives",44,108,4);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Lennard Lindenbluth",45,106,5);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Florencia Janas",46,102,6);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Royce Osment",47,103,7);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Gran Brokenshaw",48,104,8);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Verina Pallent",49,105,9);
+
+insert into student (full_name, id, club_id,group_of_students_id) values ("Thorndike Olyet",50,101,10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE public.teacher
+(
+    fullname character varying COLLATE pg_catalog."default",
+    id integer NOT NULL,
+    work_experience integer,
+    salary integer,
+    group_of_students_id integer,
+    CONSTRAINT teacher_pkey PRIMARY KEY (id),
+    CONSTRAINT teacher_group_of_students_id_fkey FOREIGN KEY (group_of_students_id)
+        REFERENCES public.group_of_students (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.teacher
+    OWNER to postgres;
+
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Peyton Dinsmore",1001,9,125542,1);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Gwenny Remnant",1002,7,70124,2);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Almeria Greste",1003,10,99329,3);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Patience Caret",1004,20,167999,4);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Wallis Tolcharde",1005,32,199344,5);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Mackenzie Sooley",1006,15,193728,6);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Marcos Dewhurst",1007,5,58114,7);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Kippie Rummin",1008,12,150047,8);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Donetta Gibling",1009,3,54579,9);
+
+insert into teacher (full_name, id, work_experience,salary,group_of_students_id) values ("Luz Dilon",1010,8,170687,10);
+
+
+
+
